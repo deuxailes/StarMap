@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- MetaData -->
+  <meta charset="utf-8">
+  <title>CCore StarMap</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" href="assets-web/images/favicons/favicon.ico" />
+  <link rel="apple-touch-icon" href="assets-web/images/favicons/logo180.png" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  
+  <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.3.0/firebase-ui-auth.css" />
+
+  <link rel="stylesheet" href="assets-web/libraries/boot-select/css/bootstrap-select.css">
+  <!-- Our Custom CSS -->
+  <link rel="stylesheet" href="assets-web/stylesheets/styles.css">
+  <link rel="stylesheet" href="assets-web/stylesheets/gui.css">
+  <link rel="stylesheet" type="text/css" href="assets-web/stylesheets/icons.css" />
+  <!-- Scrollbar Custom CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+
+</head>
+
+<body>
+<!-- Loading Screen -->
+<section id="loading-screen">
+  <div class="loadDiv">
+    <xml version="1.0" encoding="utf-8"?>
+    <!-- Generator: Adobe Illustrator 23.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+    <svg version="1.1" id="LoadStyle" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+       viewBox="0 0 550 150" style="enable-background:new 0 0 550 150;" xml:space="preserve">
+       <style type="text/css">
+        #loadStyleText{fill:#0f0f0f;stroke:#510707;}
+        #loadStyleDot1{fill:#0f0f0f;stroke:#510707;}
+        #loadStyleDot2{fill:#0f0f0f;stroke:#510707;}
+      </style>
+    <g id="loadStyleGroup">
+      <g id="loadStyleText">
+        <g>
+          <path d="M169.59,102.86h-31.1l-6.21-6.24V53.11h12.45v34.18l3.09,3.12h21.77V102.86z"/>
+          <path d="M212.44,53.11l3.12,3.12v9.33v24.86v9.33l-3.12,3.12h-9.33H190.7h-9.33l-3.12-3.12V56.23l3.12-3.12h9.33h12.41H212.44z
+             M203.11,90.41V65.56H190.7v24.86H203.11z"/>
+          <path d="M256.68,53.11l3.12,3.12v46.63h-12.45V91.97l-1.53-1.56h-9.33l-1.56,1.56v10.89h-12.45V56.23l3.12-3.12H256.68z
+             M247.45,76.44v-9.33l-1.53-1.56h-9.33l-1.56,1.56v9.33l1.56,1.53h9.33L247.45,76.44z"/>
+          <path d="M298.35,53.11l3.09,3.12v43.51l-3.09,3.12h-31.62V53.11H298.35z M289.02,88.85V67.12l-1.56-1.56h-8.29v24.86h8.29
+            L289.02,88.85z"/>
+          <path d="M308.37,102.86V53.11h12.45v49.75H308.37z"/>
+          <path d="M365.05,102.86H352.6V67.12l-1.53-1.56h-9.33l-1.56,1.56v35.64h-12.45V57.79l4.68-4.68h27.98l4.64,4.68V102.86z"/>
+          <path d="M384.43,90.41h9.33l3.09-3.12v-9.33h12.45v18.65l-6.21,6.24h-24.89l-6.21-6.24v-37.3l6.21-6.21h31.1v12.45h-24.86V90.41z
+            "/>
+        </g>
+      </g>
+      <g id="loadStyleDot2">
+        <g>
+          <path d="M472.28,79.91l-4.35,4.35h-8.74l-4.35-4.35v-8.74l4.35-4.35h8.74l4.35,4.35V79.91z"/>
+        </g>
+        <g>
+          <path d="M503.81,78.67l-3.48,3.48h-6.99l-3.48-3.48v-6.99l3.48-3.48h6.99l3.48,3.48V78.67z"/>
+        </g>
+        <g>
+          <path d="M527.13,77.57l-2.56,2.56h-5.16l-2.56-2.56v-5.16l2.56-2.56h5.16l2.56,2.56V77.57z"/>
+        </g>
+      </g>
+      <g id="loadStyleDot1">
+        <g>
+          <path d="M77.72,73.17l4.35-4.35h8.74l4.35,4.35v8.74l-4.35,4.35h-8.74l-4.35-4.35V73.17z"/>
+        </g>
+        <g>
+          <path d="M46.19,73.68l3.48-3.48h6.99l3.48,3.48v6.99l-3.48,3.48h-6.99l-3.48-3.48V73.68z"/>
+        </g>
+        <g>
+          <path d="M22.87,74.42l2.56-2.56h5.16l2.56,2.56v5.16l-2.56,2.56h-5.16l-2.56-2.56V74.42z"/>
+        </g>
+      </g>
+    </g>
+    </svg>
+    
+
+  </div>
+</section>
+<!-- Nav Menu -->
+<section class="menu menu--circle">
+  <input type="checkbox" id="menu__active" />
+  <label for="menu__active" class="menu__active">
+  <div class="menu__toggle">
+    <div class="icon">
+      <div class="hamburger"><i class="fas fa-solar-system fa-3x"></i></div>
+    </div>
+  </div>
+  <input type="radio" name="arrow--up" id="degree--up-0"/>
+  <input type="radio" name="arrow--up" id="degree--up-1" />
+  <input type="radio" name="arrow--up" id="degree--up-2" />
+  <div class="menu__listings">
+    <ul class="circle">
+      <li>
+        <div class="placeholder">
+          <div class="upside">
+            <a id="button00" class="button"><i class="fas fa-planet-moon"></i></a>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="placeholder">
+          <div class="upside">
+            <a id="button01" class="button"><i class="fas fa-home"></i></a>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="placeholder">
+          <div class="upside">
+            <a id="button02" class="button"><i class="fas fa-exclamation-triangle"></i></a>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="placeholder">
+          <div class="upside">
+            <a id="button03" class="button"><i class="fas fa-satellite"></i></a>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="placeholder">
+          <div class="upside">
+            <a id="button04" class="button"><i class="far fa-space-shuttle"></i></a>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="placeholder">
+          <div class="upside">
+            <a id="button05" class="button"><i class="fas fa-radar"></i></a>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="placeholder">
+          <div class="upside">
+            <a id="button06" class="button"><i class="fas fa-location"></i></a>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="placeholder">
+          <div class="upside">
+            <a id="button07" class="button"><i class="fas fa-barcode-read"></i></a>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="placeholder">
+          <div class="upside">
+            <a id="button08" class="button"><i class="fas fa-filter"></i></a>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="placeholder">
+          <div class="upside">
+            <a id="button09" class="button"><i class="fas fa-exclamation-triangle"></i></a>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="menu__arrow menu__arrow--top">
+    <ul>
+      <li>
+        <label for="degree--up-0"><div class="arrow"></div></label>
+  <label for="degree--up-1"><div class="arrow"></div></label>
+  <label for="degree--up-2"><div class="arrow"></div></label>
+  </li>
+  </ul>
+  </div>
+  </label>
+</section>
+<!-- Menu Windows -->
+<section class="menu--windows">
+  <div id="draggable-JS-00" class="draggableStyle02 ui-widget-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Object Spawner </h5>
+      <button id="close00" type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+    </div>
+    <div class="row">
+      <div class="col form-wid">Select Object Type</div>
+      <!-- NLine -->
+      <div class="w-100"></div>
+      <div class="col form-wid">
+        <select id="basicA" class="selectpicker show-tick form-control" data-live-search="true">
+        <option id="normStat">Station</option>
+        <option id="megaStat">Mega Station</option>
+        <option id="tradePost">Trading Outpost</option>
+        <option id="manFact">Manufacturing</option>
+        <option id="mineFact">Mining Facility</option>
+        <option id="flagShip">Flagship</option>
+        <option id="headQuat">Head Quaters</option>
+      </select>
+      </div>
+      <!-- NLine -->
+      <div class="w-100"></div>
+      <!-- BTN - Spawn Object -->
+      <div class="col form-wid">
+        <button id="spawnButton" type="button" class="btn btn-success navcard-button">Spawn</button>
+      </div>
+      <div class="col form-wid">
+        <button id="delspawnButton" type="button" class="btn btn-danger navcard-button">Despawn</button>
+      </div>
+      <div class="w-100"></div>
+
+    </div>
+    <div class="row">
+      <div class="col form-wid">Select Object Type</div>
+      <!-- NLine -->
+      <div class="w-100"></div>
+      <div class="col form-wid">
+        <select id="basicB" class="selectpicker show-tick form-control" data-live-search="true">
+          <option id="normStat">Collective</option>
+          <option id="megaStat">Kingdom</option>
+          <option id="tradePost">Empire</option>
+          <option id="neutral">Neutral</option>
+          <option id="manFact">Dark Star Imperium</option>
+          <option id="mineFact">Machine</option>
+          <option id="flagShip">Mechanicus</option>
+          <option id="IOM">Imperium of Man</option>
+          <option id="DA">Dark Army</option>
+          <option id="AD">Aegis Dynamics</option>
+          <option id="AF">Asage Fleetworks</option>
+          <option id="ALR">Alpha Legion Regime</option>
+          <option id="RSC">Rising Sun Corporation</option>
+          <option id="TGL">The Grey Legion</option>
+          <option id="SI">Star Industries</option>
+          <option id="TSE">The Solarian Empire</option>
+          <option id="II">Interstellar Inc.</option>
+        </select>
+      </div>
+      <button id="saveButton" type="button" class="btn btn-warning navcard-button">Save</button>
+      <button id="updateButton" type="button" class="btn btn-warning navcard-button">Update</button>
+      <!-- NLine -->
+      <div class="w-100"></div>
+      <!-- BTN - Spawn Object -->
+      
+    </div>
+
+  </div>
+  <div id="draggable-JS-01" class="draggableStyle03 ui-widget-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Object Saver</h5>
+      <button id="close01" type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+    </div>
+      <div class="col form-wid">
+      <!-- <form id="app"> -->
+  <form>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" class="form-control" id="txtEmail" aria-describedby="emailHelp" placeholder="Enter email">
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" class="form-control" id="txtPassword" placeholder="Password">
+    </div>
+    <button id="btnSignUp" type="button" class="btn btn-primary">SignUp</button>
+    <button id="btnLogout" type="button" class="btn btn-primary">Logout</button>
+    <button id="btnLogin" type="button" class="btn btn-primary">Submit</button>
+  </form>
+<!-- </form> -->
+      </div>
+  </div>
+  <div id="draggable-JS-02" class="draggableStyle02 ui-widget-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Title</h5>
+      <button id="close02" type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button id="close01">
+</div>
+
+</div>
+</section>
+
+<section class="error--windows">
+<div id="success">
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+</div>
+<div id="warning">
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+</div>
+<div id="danger">
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+</div>
+</section>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
+    <script src="assets-web/libraries/boot-select/js/bootstrap-select.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
+    <script src="assets-map/js/menu.js"></script>
+    <script src="assets-map/js/libraries/three.min.js"></script>
+    <script src="assets-map/js/libraries/OrbitControls.js"></script>
+    <script src="assets-map/js/libraries/threex.domevents.js"></script>
+    <script src="assets-map/js/libraries/TransformControls.js"></script>
+    <script src="assets-map/js/libraries/dat.gui.min.js"></script>
+    <script src="assets-map/js/libraries/OBJLoader.js"></script>
+    <script src="assets-map/js/libraries/MTLLoader.js"></script>
+    <script src="assets-map/js/libraries/stats.min.js"></script>
+    <script src="assets-map/js/libraries/threeJS-Textures.js"></script>
+    <script src="assets-map/js/libraries/threeJS-Sprites.js"></script>
+    <!-- JS: Index -->
+    <script src="assets-map/js/index.js" type="module"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/4.3.0/firebase-ui-auth.js"></script>
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyAYJcRxvUN4ERkSnF236mYntZeaJWxL4XM",
+        authDomain: "collective-starmap.firebaseapp.com",
+        databaseURL: "https://collective-starmap.firebaseio.com",
+        projectId: "collective-starmap",
+        storageBucket: "collective-starmap.appspot.com",
+        messagingSenderId: "525137550729",
+        appId: "1:525137550729:web:ad16d93a60df8213d7d558",
+        measurementId: "G-K28LNEZSC1"
+      };
+      
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      var ui = new firebaseui.auth.AuthUI(firebase.auth());
+      //firebase.analytics();      
+    </script>
+    
+</body>
+
+</html>

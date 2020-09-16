@@ -1,0 +1,9 @@
+1. Create HUD (In Progress)
+2. Create backend to store spawned items.
+3. Security Clearance Implemented to be able to spawn objects using accounts.
+4. Double click on Object to center in.
+5. Shift Click multiple then click distance DONE
+6. Num Pad Camera View
+7. Render new line upon object moving DONE
+8. Delete distance and line attached to it
+9. Color of objects based on faction
